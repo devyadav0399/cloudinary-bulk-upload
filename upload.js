@@ -62,6 +62,10 @@ const uploadImage = async (filePath) => {
       contextPairs.push(`location=${escapeContextValue(location)}`);
     }
 
+    // Extract the file name from the filePath
+    const fileName = path.basename(filePath);
+    contextPairs.push(`filename=${escapeContextValue(fileName)}`);
+
     if (contextPairs.length > 0) {
       // Join context items with pipes (|) as per API documentation
       formData.append("context", contextPairs.join("|"));
